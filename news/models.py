@@ -35,11 +35,19 @@ def save_slug_name_tag(sender, instance, **kwargs):
 
 
 class PostAbstract(models.Model):
+    post_types = (
+        ('N', 'Publicación'),
+        ('A', 'Audio'),
+        ('L', 'Libro'),
+        ('C', 'Conferencia'),
+    )
+
     title = models.CharField(max_length=120)
     slug_title = models.SlugField(max_length=120, null=True, blank=True)
     content = models.TextField()
     categories = models.ManyToManyField(Category)
     tags = models.ManyToManyField(Tag)
+    post_type = models.CharField(choices=post_types, default='N', max_length=1)
 
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
