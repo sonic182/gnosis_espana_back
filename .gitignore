@@ -14,3 +14,4 @@ diseño/
 node_modules/
 logs/*
 .env
+staticfiles/

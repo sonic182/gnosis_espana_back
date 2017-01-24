@@ -2,6 +2,9 @@ from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.text import slugify
+# from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
+
 
 
 class Category(models.Model):
@@ -44,7 +47,7 @@ class PostAbstract(models.Model):
 
     title = models.CharField(max_length=120)
     slug_title = models.SlugField(max_length=120, null=True, blank=True)
-    content = models.TextField()
+    content = RichTextUploadingField()
     categories = models.ManyToManyField(Category)
     tags = models.ManyToManyField(Tag)
     post_type = models.CharField(choices=post_types, default='N', max_length=1)
